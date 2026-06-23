@@ -1,5 +1,6 @@
 import { AnswerText } from './AnswerText'
 import { SourcesList } from './SourcesList'
+import { LexlySection } from './LexlySection'
 import type { SearchState } from '@/types'
 
 interface Props {
@@ -89,6 +90,11 @@ export function AnswerPanel({ state }: Props) {
 
       {/* Sources */}
       {isDone && sources.length > 0 && <SourcesList sources={sources} />}
+
+      {/* Lexly — opt-in practical interpretation, only shown after a successful answer */}
+      {isDone && answer.length > 0 && (
+        <LexlySection question={question} ragAnswer={answer} sources={sources} />
+      )}
     </div>
   )
 }
